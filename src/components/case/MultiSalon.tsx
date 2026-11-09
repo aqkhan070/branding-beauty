@@ -78,7 +78,7 @@ export function MultiSalon() {
         </div>
         <div className="relative w-full max-w-4xl">
           {[0, 1, 2, 3].map((i) => {
-            const s = salons[i % 3];
+            const s = salons[i % 3]!;
             const pos = ["-left-10 -top-10", "-right-10 -top-10", "-bottom-10 -left-10", "-bottom-10 -right-10"][i];
             return (
               <div key={i} data-salon className={`absolute z-20 hidden w-44 overflow-hidden rounded-xl bg-pure text-plum shadow-float md:block ${pos}`}>

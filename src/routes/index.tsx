@@ -30,7 +30,7 @@ function Index() {
       <header className="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-6 py-5 md:px-12">
         <span className="font-display text-xl">Beauty<em className="text-rose">Hub</em></span>
         <nav className="glass hidden gap-6 rounded-full px-5 py-2 text-xs md:flex">
-          {[["ecosystem", "Ecosystem"], ["journey", "Journey"]].map(([id, l]) => <button key={id} onClick={() => scrollToId(id)} className="hover:text-rose">{l}</button>)}
+          {([["ecosystem", "Ecosystem"], ["journey", "Journey"]] as const).map(([id, l]) => <button key={id} onClick={() => scrollToId(id)} className="hover:text-rose">{l}</button>)}
         </nav>
         <span className="eyebrow hidden md:block">Case Study · 2026</span>
       </header>
