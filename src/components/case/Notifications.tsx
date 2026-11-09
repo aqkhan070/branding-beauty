@@ -53,7 +53,7 @@ export function Notifications() {
               {mode === "instant" ? (
                 <motion.div key="i" initial={{ opacity: 0, rotateX: -20 }} animate={{ opacity: 1, rotateX: 0 }} exit={{ opacity: 0 }} className="space-y-3">
                   <div className="overflow-hidden rounded-2xl bg-pure shadow-soft">
-                    <div className="flex items-center gap-2 bg-blush/50 px-4 py-2 text-xs"><Mail className="h-3.5 w-3.5 text-brand-mail" /><span className="font-medium">Email</span><span className="ml-auto text-muted-foreground">now</span></div>
+                    <div className="flex items-center gap-2 bg-blush/50 px-4 py-2 text-xs"><Mail className="h-3.5 w-3.5 text-mail" /><span className="font-medium">Email</span><span className="ml-auto text-muted-foreground">now</span></div>
                     <div className="p-4 text-sm"><p className="font-display text-xl">Your appointment is confirmed</p><p className="mt-1 text-xs text-muted-foreground">Facial · Glow Studio · Nov 12, 13:00</p><div className="mt-3 inline-block rounded-full bg-plum px-3 py-1 text-[11px] text-cream">Add to calendar</div></div>
                   </div>
                   <div className="rounded-2xl bg-wa/10 p-3 shadow-soft">
