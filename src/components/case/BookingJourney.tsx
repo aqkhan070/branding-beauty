@@ -31,7 +31,7 @@ export function BookingJourney() {
     else setStage(i);
   };
 
-  const s = salons[salon];
+  const s = salons[salon]!;
   const card = { initial: { opacity: 0, y: 40, scale: 0.96, filter: "blur(6px)" }, animate: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }, exit: { opacity: 0, y: -30, scale: 0.97, filter: "blur(6px)" }, transition: { duration: 0.6, ease } };
 
   return (
@@ -120,7 +120,7 @@ export function BookingJourney() {
                     </motion.div>
                     <p className="mt-4 font-display text-3xl">You're booked</p>
                     <div className="mt-5 w-full space-y-2 rounded-2xl bg-pure p-4 text-left text-xs shadow-soft">
-                      {[["Salon", s.name], ["Services", picked.join(", ") || "—"], ["Date", `Nov ${day}, 2026`], ["Time", s.slots[slot]]].map(([k, v]) => (
+                      {[["Salon", s.name], ["Services", picked.join(", ") || "—"], ["Date", `Nov ${day}, 2026`], ["Time", s.slots[slot]!]].map(([k, v]) => (
                         <div key={k} className="flex justify-between gap-3"><span className="text-muted-foreground">{k}</span><span className="text-right font-medium">{v}</span></div>
                       ))}
                     </div>

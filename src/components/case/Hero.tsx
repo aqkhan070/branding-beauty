@@ -103,10 +103,10 @@ export function Hero() {
 
           <Float depth={-0.4} mx={mx} my={my} delay={0.9} className="left-0 top-6">
             <div className="w-52 overflow-hidden rounded-2xl bg-pure shadow-soft">
-              <img src={salons[0].img} alt="Glow Studio salon interior" width={1024} height={768} className="h-24 w-full object-cover" />
+              <img src={salons[0]!.img} alt="Glow Studio salon interior" width={1024} height={768} className="h-24 w-full object-cover" />
               <div className="p-3">
-                <div className="flex items-center justify-between text-sm font-medium">{salons[0].name}<span className="flex items-center gap-1 text-xs"><Star className="h-3 w-3 fill-rose text-rose" />4.9</span></div>
-                <div className="mt-2 flex gap-1.5">{salons[0].slots.map((s) => <span key={s} className="rounded-full bg-secondary px-2 py-0.5 text-[10px]">{s}</span>)}</div>
+                <div className="flex items-center justify-between text-sm font-medium">{salons[0]!.name}<span className="flex items-center gap-1 text-xs"><Star className="h-3 w-3 fill-rose text-rose" />4.9</span></div>
+                <div className="mt-2 flex gap-1.5">{salons[0]!.slots.map((s) => <span key={s} className="rounded-full bg-secondary px-2 py-0.5 text-[10px]">{s}</span>)}</div>
               </div>
             </div>
           </Float>

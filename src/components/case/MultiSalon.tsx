@@ -39,11 +39,11 @@ function Dashboard() {
           <motion.div key={tab} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25 }}>
             {tab === "appts" && (
               <div className="divide-y divide-border rounded-lg border border-border">
-                {appts.map((r) => <div key={r[0]} className="grid grid-cols-[1fr_1fr_1.3fr_50px_80px] items-center gap-2 px-3 py-2"><span className="font-medium">{r[0]}</span><span>{r[1]}</span><span className="text-muted-foreground">{r[2]}</span><span>{r[3]}</span><span className={`rounded-full px-2 py-0.5 text-center text-[10px] ${statusCls[r[4]]}`}>{r[4]}</span></div>)}
+                {appts.map((r) => <div key={r[0]} className="grid grid-cols-[1fr_1fr_1.3fr_50px_80px] items-center gap-2 px-3 py-2"><span className="font-medium">{r[0]}</span><span>{r[1]}</span><span className="text-muted-foreground">{r[2]}</span><span>{r[3]}</span><span className={`rounded-full px-2 py-0.5 text-center text-[10px] ${statusCls[r[4]!]}`}>{r[4]}</span></div>)}
               </div>
             )}
             {tab === "salons" && <div className="grid grid-cols-3 gap-3">{salons.map((s) => <div key={s.id} className="overflow-hidden rounded-lg border border-border"><img src={s.img} alt={s.name} width={1024} height={768} loading="lazy" className="h-20 w-full object-cover" /><div className="p-2"><p className="font-medium">{s.name}</p><p className="text-muted-foreground">{s.area} · Online</p></div></div>)}</div>}
-            {tab === "customers" && <div className="space-y-2">{appts.map((r, i) => <div key={r[0]} className="flex items-center gap-3 rounded-lg bg-muted/60 px-3 py-2"><span className="grid h-7 w-7 place-items-center rounded-full bg-blush font-medium">{r[0][0]}</span><span className="flex-1">{r[0]}</span><span className="text-muted-foreground">{i + 2} visits · prefers {r[1]}</span></div>)}</div>}
+            {tab === "customers" && <div className="space-y-2">{appts.map((r, i) => <div key={r[0]} className="flex items-center gap-3 rounded-lg bg-muted/60 px-3 py-2"><span className="grid h-7 w-7 place-items-center rounded-full bg-blush font-medium">{r[0]![0]}</span><span className="flex-1">{r[0]}</span><span className="text-muted-foreground">{i + 2} visits · prefers {r[1]}</span></div>)}</div>}
             {tab === "services" && <div className="grid grid-cols-2 gap-2">{services.map((s) => <div key={s.name} className="flex justify-between rounded-lg border border-border px-3 py-2"><span>{s.name}</span><span className="text-muted-foreground">{s.dur}</span></div>)}</div>}
             {tab === "reports" && (
               <div>
@@ -62,7 +62,7 @@ export function MultiSalon() {
   const ref = useRef<HTMLElement>(null);
   useGsap(ref, () => {
     const tl = gsap.timeline({ scrollTrigger: { trigger: "[data-pin]", start: "top top", end: "+=2200", scrub: 1, pin: true } });
-    tl.from("[data-salon]", { x: (i) => [-1, 1, -1, 1][i] * 420, y: (i) => [-1, -1, 1, 1][i] * 200, opacity: 0, rotate: (i) => [-8, 8, 6, -6][i], duration: 1, stagger: 0.1 })
+    tl.from("[data-salon]", { x: (i) => [-1, 1, -1, 1][i] * 420, y: (i) => [-1, -1, 1, 1][i]  , opacity: 0, rotate: (i) => [-8, 8, 6, -6][i], duration: 1, stagger: 0.1 })
       .from("[data-wire]", { scaleY: 0, scaleX: 0, opacity: 0, duration: 0.6 }, "-=0.3")
       .to("[data-salon]", { opacity: 0, scale: 0.6, duration: 0.6 }, "+=0.3")
       .to("[data-wire]", { opacity: 0, duration: 0.3 }, "<")

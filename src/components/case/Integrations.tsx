@@ -17,7 +17,7 @@ const channels = [
 
 export function Integrations() {
   const [active, setActive] = useState(0);
-  const a = channels[active];
+  const a = channels[active]!;
   return (
     <section className="relative overflow-hidden bg-background py-32">
       <SectionHead eyebrow="05 — Channels" title="Connected Wherever Your Customers Are." sub="Social touchpoints and messaging feed into one place — from first inquiry to salon discovery." />

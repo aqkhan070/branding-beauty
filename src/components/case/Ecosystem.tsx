@@ -40,9 +40,9 @@ function MobileUI() {
   return (
     <Phone className="w-[180px]">
       <div className="p-3">
-        <img src={salons[1].img} alt="Muse Beauty Lounge" width={1024} height={768} loading="lazy" className="h-24 w-full rounded-xl object-cover" />
+        <img src={salons[1]!.img} alt="Muse Beauty Lounge" width={1024} height={768} loading="lazy" className="h-24 w-full rounded-xl object-cover" />
         <p className="mt-2 font-display text-lg leading-tight">Muse Beauty Lounge</p>
-        <div className="mt-2 grid grid-cols-3 gap-1">{salons[1].slots.map((s) => <span key={s} className="rounded-md bg-secondary py-1 text-center text-[9px]">{s}</span>)}</div>
+        <div className="mt-2 grid grid-cols-3 gap-1">{salons[1]!.slots.map((s) => <span key={s} className="rounded-md bg-secondary py-1 text-center text-[9px]">{s}</span>)}</div>
         <div className="mt-3 rounded-full bg-plum py-1.5 text-center text-[10px] text-cream">Book now</div>
       </div>
     </Phone>
@@ -81,9 +81,9 @@ export function Ecosystem() {
     panels.forEach((p, i) => {
       gsap.set(p, { xPercent: -50, yPercent: -50, opacity: 0, scale: 1.4, rotate: i % 2 ? 6 : -6, y: 200 });
       tl.to(p, { opacity: 1, scale: 1, rotate: 0, y: 0, duration: 1 }, i * 1.1)
-        .to(labels[i], { opacity: 1, x: 0, duration: 0.5 }, i * 1.1 + 0.2)
-        .to(labels[i], { opacity: 0.35, duration: 0.3 }, i * 1.1 + 1)
-        .to(p, { x: () => (spots[i].x / 100) * (p.parentElement?.clientWidth ?? 900) * 0.85, y: () => (spots[i].y / 100) * window.innerHeight * 0.95, scale: 0.62, duration: 1 }, i * 1.1 + 0.8);
+        .to(labels[i]!, { opacity: 1, x: 0, duration: 0.5 }, i * 1.1 + 0.2)
+        .to(labels[i]!, { opacity: 0.35, duration: 0.3 }, i * 1.1 + 1)
+        .to(p, { x: () => (spots[i]!.x / 100) * (p.parentElement?.clientWidth ?? 900) * 0.85, y: () => (spots[i]!.y / 100) * window.innerHeight * 0.95, scale: 0.62, duration: 1 }, i * 1.1 + 0.8);
     });
     tl.to("[data-hub]", { opacity: 1, scale: 1, duration: 0.8 }, 4.6)
       .to("[data-link]", { strokeDashoffset: 0, duration: 1 }, 4.8)
@@ -119,7 +119,7 @@ export function Ecosystem() {
           </div>
           {uis.map((UI, i) => (
             <div key={i} data-panel className="absolute left-1/2 top-1/2">
-              <p className={`mb-2 text-center text-[11px] font-medium uppercase tracking-[0.2em] ${platforms[i].color}`}>{platforms[i].label}</p>
+              <p className={`mb-2 text-center text-[11px] font-medium uppercase tracking-[0.2em] ${platforms[i]!.color}`}>{platforms[i]!.label}</p>
               <UI />
             </div>
           ))}
