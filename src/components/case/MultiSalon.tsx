@@ -62,7 +62,7 @@ export function MultiSalon() {
   const ref = useRef<HTMLElement>(null);
   useGsap(ref, () => {
     const tl = gsap.timeline({ scrollTrigger: { trigger: "[data-pin]", start: "top top", end: "+=2200", scrub: 1, pin: true } });
-    tl.from("[data-salon]", { x: (i) => [-1, 1, -1, 1][i] * 420, y: (i) => [-1, -1, 1, 1][i]  , opacity: 0, rotate: (i) => [-8, 8, 6, -6][i], duration: 1, stagger: 0.1 })
+    tl.from("[data-salon]", { x: (i) => [-1, 1, -1, 1][i]! * 420, y: (i) => [-1, -1, 1, 1][i]! * 200, opacity: 0, rotate: (i) => [-8, 8, 6, -6][i]!, duration: 1, stagger: 0.1 })
       .from("[data-wire]", { scaleY: 0, scaleX: 0, opacity: 0, duration: 0.6 }, "-=0.3")
       .to("[data-salon]", { opacity: 0, scale: 0.6, duration: 0.6 }, "+=0.3")
       .to("[data-wire]", { opacity: 0, duration: 0.3 }, "<")
