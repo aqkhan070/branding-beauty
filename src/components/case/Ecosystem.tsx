@@ -83,7 +83,7 @@ export function Ecosystem() {
       tl.to(p, { opacity: 1, scale: 1, rotate: 0, y: 0, duration: 1 }, i * 1.1)
         .to(labels[i], { opacity: 1, x: 0, duration: 0.5 }, i * 1.1 + 0.2)
         .to(labels[i], { opacity: 0.35, duration: 0.3 }, i * 1.1 + 1)
-        .to(p, { x: () => (spots[i].x / 100) * el.clientWidth * 0.9, y: () => (spots[i].y / 100) * window.innerHeight, scale: 0.72, duration: 1 }, i * 1.1 + 0.8);
+        .to(p, { x: () => (spots[i].x / 100) * (p.parentElement?.clientWidth ?? 900) * 0.85, y: () => (spots[i].y / 100) * window.innerHeight * 0.95, scale: 0.62, duration: 1 }, i * 1.1 + 0.8);
     });
     tl.to("[data-hub]", { opacity: 1, scale: 1, duration: 0.8 }, 4.6)
       .to("[data-link]", { strokeDashoffset: 0, duration: 1 }, 4.8)
@@ -109,7 +109,7 @@ export function Ecosystem() {
         <div className="absolute inset-0 hidden md:block md:left-[28%]">
           <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
             {spots.map((s, i) => (
-              <line key={i} data-link x1="50" y1="50" x2={50 + s.x * 0.9} y2={50 + s.y} stroke="var(--rose)" strokeWidth="0.15" strokeDasharray="100" strokeDashoffset="100" vectorEffect="non-scaling-stroke" />
+              <line key={i} data-link x1="50" y1="50" x2={50 + s.x * 0.7} y2={50 + s.y * 0.8} stroke="var(--rose)" strokeWidth="0.15" strokeDasharray="100" strokeDashoffset="100" vectorEffect="non-scaling-stroke" />
             ))}
           </svg>
           <div data-hub className="absolute left-1/2 top-1/2 grid h-36 w-36 -translate-x-1/2 -translate-y-1/2 scale-50 place-items-center rounded-full bg-plum text-center text-cream opacity-0 shadow-float">
