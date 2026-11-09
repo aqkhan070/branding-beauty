@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useSpring, useTransform, type MotionValue } from "motion/react";
+import { MotionConfig, motion, useMotionValue, useSpring, useTransform, type MotionValue } from "motion/react";
 import { Bell, CalendarDays, Headphones, LayoutDashboard, Star, ArrowDown } from "lucide-react";
 import { useRef, type ReactNode } from "react";
 import { Phone } from "./Devices";
@@ -13,11 +13,12 @@ function Float({ children, depth, mx, my, delay, className }: { children: ReactN
   const x = useTransform(mx, (v) => v * depth);
   const y = useTransform(my, (v) => v * depth);
   return (
-    <motion.div style={{ x, y }} className={`absolute ${className}`}>
+    <motion.div style={{ x, y }} className={`absolute will-change-transform ${className}`}>
       <motion.div
-        initial={{ opacity: 0, scale: 0.85, y: 30, filter: "blur(8px)" }}
-        animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 1.1, delay, ease }}
+        initial={{ opacity: 0, scale: 0.92, y: 24 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 1.2, delay, ease }}
+        style={{ willChange: "transform, opacity" }}
       >
         {children}
       </motion.div>
@@ -33,18 +34,25 @@ export function Hero() {
   const my = useSpring(myRaw, { stiffness: 60, damping: 20 });
 
   useGsap(ref, (el) => {
-    gsap.to(el.querySelector("[data-stage]"), {
-      scale: 0.88, yPercent: 8, opacity: 0.4, ease: "none",
-      scrollTrigger: { trigger: el, start: "top top", end: "bottom top", scrub: true },
-    });
+    const stage = el.querySelector("[data-stage]");
+    if (!stage) return;
+    gsap.fromTo(stage,
+      { scale: 1, yPercent: 0, autoAlpha: 1 },
+      {
+        scale: 0.9, yPercent: 6, autoAlpha: 0.55, ease: "none", immediateRender: false,
+        scrollTrigger: { trigger: el, start: "top top", end: "bottom top", scrub: 0.6, invalidateOnRefresh: true },
+      });
   });
 
   const words = ["Beauty,", "Connected", "Beautifully."];
 
   return (
+    <MotionConfig reducedMotion="user">
     <section
       ref={ref}
-      onMouseMove={(e) => {
+      onMouseLeave={() => { mxRaw.set(0); myRaw.set(0); }}
+      onPointerMove={(e) => {
+        if (e.pointerType === "touch") return;
         const r = e.currentTarget.getBoundingClientRect();
         mxRaw.set((e.clientX - r.width / 2) / r.width * 40);
         myRaw.set((e.clientY - r.height / 2) / r.height * 40);
@@ -89,14 +97,15 @@ export function Hero() {
           </motion.button>
         </div>
 
-        <div data-stage className="relative h-[620px] w-full">
+        <div data-stage className="relative mx-auto h-[560px] w-full max-w-[600px] origin-center will-change-transform sm:h-[620px]">
           {/* connection lines */}
           <svg className="absolute inset-0 h-full w-full" viewBox="0 0 600 620" fill="none" preserveAspectRatio="none">
             {["M300 310 C 180 250, 140 140, 90 90", "M300 310 C 430 240, 470 140, 520 110", "M300 310 C 160 380, 120 470, 80 520", "M300 310 C 440 400, 480 480, 530 520", "M300 310 L 560 320"].map((d, i) => (
               <motion.path
                 key={d} d={d} stroke="var(--rose)" strokeWidth="1.2" strokeDasharray="4 6" className="dash-flow"
-                initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 0.7 }}
-                transition={{ duration: 1.6, delay: 1.4 + i * 0.15, ease }}
+                vectorEffect="non-scaling-stroke"
+                initial={{ opacity: 0 }} animate={{ opacity: 0.7 }}
+                transition={{ duration: 1.2, delay: 1.5 + i * 0.12, ease }}
               />
             ))}
           </svg>
@@ -155,5 +164,6 @@ export function Hero() {
         </div>
       </div>
     </section>
+    </MotionConfig>
   );
 }
