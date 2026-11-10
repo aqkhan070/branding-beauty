@@ -64,7 +64,7 @@ export function Hero() {
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="eyebrow">
             Beauty Technology / Digital Ecosystem / Case Study
           </motion.p>
-          <h1 className="mt-6 text-6xl leading-[0.95] md:text-8xl">
+          <h1 className="type-hero mt-6">
             {words.map((w, i) => (
               <span key={w} className="block overflow-hidden pb-2">
                 <motion.span
@@ -80,7 +80,7 @@ export function Hero() {
           </h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.7, ease }}
-            className="mt-8 max-w-md text-lg text-muted-foreground"
+            className="type-body mt-8 max-w-md text-muted-foreground"
           >
             One intelligent digital ecosystem connecting salons, clients, appointments and experiences across every platform.
           </motion.p>
@@ -88,7 +88,7 @@ export function Hero() {
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.1 }}
             whileHover={{ x: 4 }}
             onClick={() => scrollToId("ecosystem")}
-            className="group mt-10 inline-flex items-center gap-3 rounded-full border border-plum/20 bg-pure/60 py-2 pl-6 pr-2 text-sm font-medium backdrop-blur transition-colors hover:bg-plum hover:text-cream"
+            className="type-nav group mt-10 inline-flex items-center gap-3 rounded-full border border-plum/20 bg-pure/60 py-2 pl-6 pr-2 backdrop-blur transition-colors hover:bg-plum hover:text-cream"
           >
             Explore the Ecosystem
             <span className="grid h-9 w-9 place-items-center rounded-full bg-plum text-cream transition-colors group-hover:bg-rose">
@@ -111,50 +111,50 @@ export function Hero() {
           </svg>
 
           <Float depth={-0.4} mx={mx} my={my} delay={0.9} className="left-0 top-6">
-            <div className="w-52 overflow-hidden rounded-2xl bg-pure shadow-soft">
+            <div className="w-56 overflow-hidden rounded-2xl bg-pure shadow-soft">
               <img src={salons[0]!.img} alt="Glow Studio salon interior" width={1024} height={768} className="h-24 w-full object-cover" />
-              <div className="p-3">
-                <div className="flex items-center justify-between text-sm font-medium">{salons[0]!.name}<span className="flex items-center gap-1 text-xs"><Star className="h-3 w-3 fill-rose text-rose" />4.9</span></div>
-                <div className="mt-2 flex gap-1.5">{salons[0]!.slots.map((s) => <span key={s} className="rounded-full bg-secondary px-2 py-0.5 text-[10px]">{s}</span>)}</div>
+              <div className="p-3.5">
+                <div className="type-ui flex items-center justify-between">{salons[0]!.name}<span className="type-label flex items-center gap-1"><Star className="h-3.5 w-3.5 fill-rose text-rose" />4.9</span></div>
+                <div className="mt-2.5 flex flex-wrap gap-1.5">{salons[0]!.slots.map((s) => <span key={s} className="type-label rounded-full bg-secondary px-2.5 py-1">{s}</span>)}</div>
               </div>
             </div>
           </Float>
           <Float depth={-0.6} mx={mx} my={my} delay={1.05} className="right-0 top-12">
-            <div className="w-56 rounded-2xl bg-plum p-4 text-cream shadow-float">
-              <div className="flex items-center gap-2 text-xs opacity-80"><LayoutDashboard className="h-3.5 w-3.5" /> Admin · Today</div>
+            <div className="w-60 rounded-2xl bg-plum p-4 text-cream shadow-float">
+              <div className="type-label flex items-center gap-2 opacity-80"><LayoutDashboard className="h-3.5 w-3.5" /> Admin · Today</div>
               <div className="mt-3 flex items-end gap-1.5">{[40, 64, 52, 80, 70, 92, 60].map((h, i) => <span key={i} style={{ height: h * 0.5 }} className="w-full rounded-sm bg-blush/70" />)}</div>
-              <p className="mt-2 text-[10px] opacity-60">Sample bookings across salons</p>
+              <p className="type-label mt-2.5 opacity-70">Sample bookings across salons</p>
             </div>
           </Float>
           <Float depth={-0.3} mx={mx} my={my} delay={1.2} className="bottom-6 left-2">
-            <div className="glass flex w-56 items-start gap-3 rounded-2xl p-3 shadow-soft">
-              <span className="grid h-8 w-8 place-items-center rounded-full bg-mod-support/20 text-mod-support"><Headphones className="h-4 w-4" /></span>
-              <div className="text-xs"><p className="font-medium">Support · Live</p><p className="text-muted-foreground">"Can I move my facial to 4pm?"</p></div>
+            <div className="glass flex w-60 items-start gap-3 rounded-2xl p-3.5 shadow-soft">
+              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-mod-support/20 text-mod-support"><Headphones className="h-4 w-4" /></span>
+              <div className="type-ui"><p className="font-medium">Support · Live</p><p className="mt-0.5 font-normal text-muted-foreground">"Can I move my facial to 4pm?"</p></div>
             </div>
           </Float>
           <Float depth={-0.5} mx={mx} my={my} delay={1.35} className="bottom-12 right-0">
-            <div className="w-48 rounded-2xl bg-pure p-3 shadow-soft">
-              <div className="flex items-center gap-2 text-xs font-medium"><CalendarDays className="h-3.5 w-3.5 text-mod-web" /> November</div>
-              <div className="mt-2 grid grid-cols-7 gap-1 text-center text-[9px]">
-                {Array.from({ length: 14 }, (_, i) => <span key={i} className={`rounded py-0.5 ${i === 9 ? "bg-rose text-pure" : "bg-muted"}`}>{i + 8}</span>)}
+            <div className="w-52 rounded-2xl bg-pure p-3.5 shadow-soft">
+              <div className="type-ui flex items-center gap-2"><CalendarDays className="h-3.5 w-3.5 text-mod-web" /> November</div>
+              <div className="type-label mt-2.5 grid grid-cols-7 gap-1 text-center">
+                {Array.from({ length: 14 }, (_, i) => <span key={i} className={`rounded py-1 ${i === 9 ? "bg-rose text-pure" : "bg-muted"}`}>{i + 8}</span>)}
               </div>
             </div>
           </Float>
           <Float depth={-0.8} mx={mx} my={my} delay={1.6} className="right-[4%] top-[46%]">
-            <div className="glass flex items-center gap-2 rounded-full px-3 py-2 text-xs shadow-soft"><Bell className="h-3.5 w-3.5 text-rose" /> Booking confirmed</div>
+            <div className="type-ui glass flex items-center gap-2 rounded-full px-3.5 py-2 shadow-soft"><Bell className="h-3.5 w-3.5 text-rose" /> Booking confirmed</div>
           </Float>
 
           <Float depth={0.25} mx={mx} my={my} delay={0.4} className="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}>
               <Phone className="w-[230px]">
                 <div className="px-4 pt-4">
-                  <p className="text-[10px] text-muted-foreground">Good morning, Sara</p>
-                  <p className="font-display text-2xl leading-tight">Find your glow</p>
-                  <div className="mt-3 flex gap-1.5 text-[10px]">{["Hair", "Nails", "Spa", "Makeup"].map((t, i) => <span key={t} className={`rounded-full px-2.5 py-1 ${i === 2 ? "bg-plum text-cream" : "bg-secondary"}`}>{t}</span>)}</div>
+                  <p className="type-label text-muted-foreground">Good morning, Sara</p>
+                  <p className="type-card mt-0.5 leading-tight">Find your glow</p>
+                  <div className="type-label mt-3 flex flex-wrap gap-1.5">{["Hair", "Nails", "Spa", "Makeup"].map((t, i) => <span key={t} className={`rounded-full px-2.5 py-1 ${i === 2 ? "bg-plum text-cream" : "bg-secondary"}`}>{t}</span>)}</div>
                   {salons.map((s) => (
                     <div key={s.id} className="mt-3 flex gap-2.5 rounded-xl bg-pure p-2 shadow-soft">
                       <img src={s.img} alt="" width={1024} height={768} className="h-12 w-12 rounded-lg object-cover" />
-                      <div className="text-[11px]"><p className="font-medium">{s.name}</p><p className="text-muted-foreground">{s.area} · ★ {s.rating}</p></div>
+                      <div className="type-ui min-w-0"><p className="truncate font-medium">{s.name}</p><p className="font-normal text-muted-foreground">{s.area} · ★ {s.rating}</p></div>
                     </div>
                   ))}
                 </div>

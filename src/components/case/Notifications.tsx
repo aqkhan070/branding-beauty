@@ -23,7 +23,7 @@ export function Notifications() {
       <SectionHead eyebrow="03 — Smart Notifications" title="Every Appointment. Everyone in Sync." sub="One booking branches instantly to the customer, the salon and the central system — then reminders follow on schedule." />
 
       <div className="mt-10 flex justify-center">
-        <div className="inline-flex rounded-full border border-border bg-pure p-1 text-sm">
+        <div className="type-nav inline-flex rounded-full border border-border bg-pure p-1">
           {([["instant", "Immediate confirmation", Zap], ["scheduled", "Scheduled reminder", Clock]] as const).map(([k, l, I]) => (
             <button key={k} onClick={() => setMode(k)} className="relative flex items-center gap-2 rounded-full px-5 py-2">
               {mode === k && <motion.span layoutId="nt" className="absolute inset-0 rounded-full bg-plum" />}
@@ -41,9 +41,9 @@ export function Notifications() {
         </svg>
 
         <div data-core className="relative z-10 mx-auto w-72 rounded-2xl bg-plum p-5 text-cream shadow-float">
-          <div className="flex items-center gap-2 text-xs opacity-70"><CalendarClock className="h-4 w-4" /> New booking · BK-2048</div>
-          <p className="mt-2 font-display text-2xl">Facial at Glow Studio</p>
-          <p className="text-sm opacity-80">Thu, Nov 12 · 13:00</p>
+          <div className="type-label flex items-center gap-2 opacity-80"><CalendarClock className="h-4 w-4" /> New booking · BK-2048</div>
+          <p className="type-card mt-2">Facial at Glow Studio</p>
+          <p className="type-secondary mt-1 opacity-85">Thu, Nov 12 · 13:00</p>
         </div>
 
         <div className="relative z-10 mt-24 grid gap-6 lg:grid-cols-3">
@@ -53,20 +53,20 @@ export function Notifications() {
               {mode === "instant" ? (
                 <motion.div key="i" initial={{ opacity: 0, rotateX: -20 }} animate={{ opacity: 1, rotateX: 0 }} exit={{ opacity: 0 }} className="space-y-3">
                   <div className="overflow-hidden rounded-2xl bg-pure shadow-soft">
-                    <div className="flex items-center gap-2 bg-blush/50 px-4 py-2 text-xs"><Mail className="h-3.5 w-3.5 text-mail" /><span className="font-medium">Email</span><span className="ml-auto text-muted-foreground">now</span></div>
-                    <div className="p-4 text-sm"><p className="font-display text-xl">Your appointment is confirmed</p><p className="mt-1 text-xs text-muted-foreground">Facial · Glow Studio · Nov 12, 13:00</p><div className="mt-3 inline-block rounded-full bg-plum px-3 py-1 text-[11px] text-cream">Add to calendar</div></div>
+                    <div className="type-label flex items-center gap-2 bg-blush/50 px-4 py-2.5"><Mail className="h-3.5 w-3.5 text-mail" /><span>Email</span><span className="ml-auto font-normal text-muted-foreground">now</span></div>
+                    <div className="p-4"><p className="type-card">Your appointment is confirmed</p><p className="type-ui mt-1.5 font-normal text-muted-foreground">Facial · Glow Studio · Nov 12, 13:00</p><div className="type-label mt-3 inline-block rounded-full bg-plum px-3 py-1.5 text-cream">Add to calendar</div></div>
                   </div>
-                  <div className="rounded-2xl bg-wa/10 p-3 shadow-soft">
-                    <div className="flex items-center gap-2 text-xs font-medium"><span className="grid h-6 w-6 place-items-center rounded-full bg-wa text-pure"><MessageCircle className="h-3.5 w-3.5" /></span>WhatsApp</div>
-                    <div className="mt-2 max-w-[85%] rounded-xl rounded-tl-none bg-pure p-2.5 text-xs">Hi Sara ✨ your Facial at Glow Studio is booked for Thu 13:00.<span className="mt-1 block text-right text-[9px] text-wa">✓✓ 10:02</span></div>
+                  <div className="rounded-2xl bg-wa/10 p-3.5 shadow-soft">
+                    <div className="type-ui flex items-center gap-2"><span className="grid h-6 w-6 place-items-center rounded-full bg-wa text-pure"><MessageCircle className="h-3.5 w-3.5" /></span>WhatsApp</div>
+                    <div className="type-ui mt-2 max-w-[85%] rounded-xl rounded-tl-none bg-pure p-3 font-normal">Hi Sara ✨ your Facial at Glow Studio is booked for Thu 13:00.<span className="type-label mt-1.5 block text-right text-wa">✓✓ 10:02</span></div>
                   </div>
                 </motion.div>
               ) : (
                 <motion.div key="s" initial={{ opacity: 0, rotateX: -20 }} animate={{ opacity: 1, rotateX: 0 }} exit={{ opacity: 0 }} className="rounded-2xl bg-pure p-4 shadow-soft">
-                  <div className="flex items-center gap-2 text-xs"><Clock className="h-3.5 w-3.5 text-rose" /> Scheduled · Nov 11, 18:00 or morning of</div>
-                  <p className="mt-2 font-display text-xl">Reminder: see you tomorrow</p>
-                  <p className="text-xs text-muted-foreground">Sent via email & WhatsApp one day before, or on the booking morning.</p>
-                  <div className="mt-4 flex items-center gap-2 text-[11px]">{["Booked", "Confirmed", "Reminder", "Visit"].map((t, i) => <span key={t} className="flex items-center gap-2"><span className={`h-2 w-2 rounded-full ${i <= 2 ? "bg-rose" : "bg-border"}`} />{t}{i < 3 && <span className="h-px w-4 bg-border" />}</span>)}</div>
+                  <div className="type-label flex items-center gap-2"><Clock className="h-3.5 w-3.5 text-rose" /> Scheduled · Nov 11, 18:00 or morning of</div>
+                  <p className="type-card mt-2">Reminder: see you tomorrow</p>
+                  <p className="type-ui mt-1.5 font-normal text-muted-foreground">Sent via email & WhatsApp one day before, or on the booking morning.</p>
+                  <div className="type-label mt-4 flex flex-wrap items-center gap-2">{["Booked", "Confirmed", "Reminder", "Visit"].map((t, i) => <span key={t} className="flex items-center gap-2"><span className={`h-2 w-2 rounded-full ${i <= 2 ? "bg-rose" : "bg-border"}`} />{t}{i < 3 && <span className="h-px w-4 bg-border" />}</span>)}</div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -75,22 +75,22 @@ export function Notifications() {
           <div data-target>
             <p className="eyebrow mb-3 text-center">Salon</p>
             <div className="rounded-2xl bg-pure p-4 shadow-soft">
-              <div className="flex items-center gap-2 text-sm font-medium"><Store className="h-4 w-4 text-mauve" /> Glow Studio · Calendar</div>
-              <div className="mt-3 space-y-1.5 text-xs">
+              <div className="type-ui flex items-center gap-2"><Store className="h-4 w-4 text-mauve" /> Glow Studio · Calendar</div>
+              <div className="type-ui mt-3 space-y-1.5 font-normal">
                 {["10:30 · Hair Styling · Nora", "13:00 · Facial · Sara", "16:15 · Spa · Lea"].map((r, i) => (
-                  <div key={r} className={`flex items-center justify-between rounded-lg px-3 py-2 ${i === 1 ? "bg-rose text-pure" : "bg-muted"}`}>{r}{i === 1 && <span className="rounded-full bg-pure/25 px-2 text-[9px]">NEW</span>}</div>
+                  <div key={r} className={`flex items-center justify-between rounded-lg px-3 py-2.5 ${i === 1 ? "bg-rose text-pure" : "bg-muted"}`}>{r}{i === 1 && <span className="type-label rounded-full bg-pure/25 px-2 py-0.5">NEW</span>}</div>
                 ))}
               </div>
-              <p className="mt-3 text-[11px] text-muted-foreground">Customer & service details updated instantly.</p>
+              <p className="type-label mt-3 text-muted-foreground">Customer & service details updated instantly.</p>
             </div>
           </div>
 
           <div data-target>
             <p className="eyebrow mb-3 text-center">Central system</p>
             <div className="rounded-2xl bg-plum-gradient p-4 text-cream shadow-soft">
-              <div className="flex items-center gap-2 text-sm"><LayoutDashboard className="h-4 w-4" /> Admin activity</div>
+              <div className="type-ui flex items-center gap-2"><LayoutDashboard className="h-4 w-4" /> Admin activity</div>
               {["Appointment recorded", "Glow Studio schedule updated", "Visible in central management"].map((t) => (
-                <div key={t} className="mt-2 flex items-center gap-2 rounded-lg bg-pure/10 px-3 py-2 text-xs"><Check className="h-3.5 w-3.5 text-blush" />{t}</div>
+                <div key={t} className="type-ui mt-2 flex items-center gap-2 rounded-lg bg-pure/10 px-3 py-2.5 font-normal"><Check className="h-3.5 w-3.5 text-blush" />{t}</div>
               ))}
             </div>
           </div>

@@ -40,15 +40,15 @@ export function BookingJourney() {
         <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-20 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
           <div>
             <p className="eyebrow">02 — Booking Journey</p>
-            <h2 className="mt-4 text-5xl leading-[1.02] md:text-6xl">From Discovery to Appointment. <em className="text-rose">Seamlessly.</em></h2>
+            <h2 className="type-section mt-4">From Discovery to Appointment. <em className="text-rose">Seamlessly.</em></h2>
             <ol className="mt-10 space-y-1">
               {stages.map((label, i) => (
                 <li key={label}>
                   <button onClick={() => jump(i)} className="group flex w-full items-center gap-4 py-2 text-left">
-                    <span className={`grid h-8 w-8 place-items-center rounded-full border text-xs transition-all duration-500 ${i < stage ? "border-rose bg-rose text-pure" : i === stage ? "border-plum bg-plum text-cream" : "border-border text-muted-foreground"}`}>
+                    <span className={`type-label grid h-8 w-8 place-items-center rounded-full border transition-all duration-500 ${i < stage ? "border-rose bg-rose text-pure" : i === stage ? "border-plum bg-plum text-cream" : "border-border text-muted-foreground"}`}>
                       {i < stage ? <Check className="h-3.5 w-3.5" /> : i + 1}
                     </span>
-                    <span className={`text-base transition-colors ${i === stage ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"}`}>{label}</span>
+                    <span className={`type-secondary transition-colors ${i === stage ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"}`}>{label}</span>
                   </button>
                 </li>
               ))}
@@ -61,14 +61,14 @@ export function BookingJourney() {
               <AnimatePresence mode="wait">
                 {stage === 0 && (
                   <motion.div key="d" {...card} className="p-4">
-                    <p className="font-display text-2xl">Salons near you</p>
+                    <p className="type-card">Salons near you</p>
                     {salons.map((x, i) => (
                       <motion.button key={x.id} onClick={() => setSalon(i)} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.15 * i, ease }}
                         className={`mt-3 block w-full overflow-hidden rounded-2xl bg-pure text-left shadow-soft ring-2 transition ${i === salon ? "ring-rose" : "ring-transparent"}`}>
                         <img src={x.img} alt={x.name} width={1024} height={768} loading="lazy" className="h-20 w-full object-cover" />
-                        <div className="flex items-center justify-between p-2.5 text-xs">
-                          <div><p className="font-medium">{x.name}</p><p className="flex items-center gap-1 text-muted-foreground"><MapPin className="h-3 w-3" />{x.area}</p></div>
-                          <span className="flex items-center gap-1"><Star className="h-3 w-3 fill-rose text-rose" />{x.rating}</span>
+                        <div className="type-ui flex items-center justify-between p-3">
+                          <div><p className="font-medium">{x.name}</p><p className="flex items-center gap-1 font-normal text-muted-foreground"><MapPin className="h-3.5 w-3.5" />{x.area}</p></div>
+                          <span className="type-label flex items-center gap-1"><Star className="h-3.5 w-3.5 fill-rose text-rose" />{x.rating}</span>
                         </div>
                       </motion.button>
                     ))}
@@ -78,15 +78,15 @@ export function BookingJourney() {
                   <motion.div key="s" {...card}>
                     <motion.img layoutId="hero-img" src={s.img} alt={s.name} width={1024} height={768} className="h-28 w-full object-cover" />
                     <div className="p-4">
-                      <p className="font-display text-2xl leading-none">{s.name}</p>
-                      <p className="mt-1 text-[11px] text-muted-foreground">Choose one or more services</p>
+                      <p className="type-card leading-none">{s.name}</p>
+                      <p className="type-label mt-1.5 text-muted-foreground">Choose one or more services</p>
                       <div className="mt-3 space-y-1.5">
                         {services.map((sv, i) => {
                           const on = picked.includes(sv.name);
                           return (
                             <motion.button key={sv.name} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.06 * i }}
                               onClick={() => setPicked(on ? picked.filter((p) => p !== sv.name) : [...picked, sv.name])}
-                              className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs transition-colors ${on ? "bg-plum text-cream" : "bg-pure"}`}>
+                              className={`type-ui flex w-full items-center justify-between rounded-xl px-3 py-2.5 transition-colors ${on ? "bg-plum text-cream" : "bg-pure"}`}>
                               <span>{sv.name}</span><span className="opacity-70">{on ? <Check className="h-3.5 w-3.5" /> : sv.dur}</span>
                             </motion.button>
                           );
@@ -97,20 +97,20 @@ export function BookingJourney() {
                 )}
                 {stage === 2 && (
                   <motion.div key="c" {...card} className="p-4">
-                    <p className="text-[11px] text-muted-foreground">{s.name}</p>
-                    <p className="font-display text-2xl">November 2026</p>
-                    <div className="mt-3 grid grid-cols-7 gap-1 text-center text-[10px]">
+                    <p className="type-label text-muted-foreground">{s.name}</p>
+                    <p className="type-card mt-0.5">November 2026</p>
+                    <div className="type-label mt-3 grid grid-cols-7 gap-1 text-center">
                       {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => <span key={i} className="text-muted-foreground">{d}</span>)}
                       {Array.from({ length: 21 }, (_, i) => i + 9).map((d) => {
                         const off = d % 7 === 1;
                         return <button key={d} disabled={off} onClick={() => setDay(d)} className={`rounded-lg py-1.5 transition ${d === day ? "bg-rose text-pure" : off ? "text-border line-through" : "bg-pure hover:bg-blush"}`}>{d}</button>;
                       })}
                     </div>
-                    <p className="mt-4 text-[11px] font-medium">Available times</p>
+                    <p className="type-ui mt-4">Available times</p>
                     <div className="mt-2 grid grid-cols-3 gap-1.5">
-                      {s.slots.map((t, i) => <button key={t} onClick={() => setSlot(i)} className={`rounded-lg py-2 text-[11px] transition ${i === slot ? "bg-plum text-cream" : "bg-pure"}`}>{t}</button>)}
+                      {s.slots.map((t, i) => <button key={t} onClick={() => setSlot(i)} className={`type-ui rounded-lg py-2.5 transition ${i === slot ? "bg-plum text-cream" : "bg-pure"}`}>{t}</button>)}
                     </div>
-                    <div className="mt-4 rounded-full bg-plum py-2.5 text-center text-xs text-cream">Confirm booking</div>
+                    <div className="type-ui mt-4 rounded-full bg-plum py-2.5 text-center text-cream">Confirm booking</div>
                   </motion.div>
                 )}
                 {stage === 3 && (
@@ -118,23 +118,23 @@ export function BookingJourney() {
                     <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", delay: 0.2 }} className="mt-6 grid h-16 w-16 place-items-center rounded-full bg-success text-pure">
                       <Check className="h-8 w-8" />
                     </motion.div>
-                    <p className="mt-4 font-display text-3xl">You're booked</p>
-                    <div className="mt-5 w-full space-y-2 rounded-2xl bg-pure p-4 text-left text-xs shadow-soft">
+                    <p className="type-subhead mt-4">You're booked</p>
+                    <div className="type-ui mt-5 w-full space-y-2 rounded-2xl bg-pure p-4 text-left shadow-soft">
                       {[["Salon", s.name], ["Services", picked.join(", ") || "—"], ["Date", `Nov ${day}, 2026`], ["Time", s.slots[slot]!]].map(([k, v]) => (
-                        <div key={k} className="flex justify-between gap-3"><span className="text-muted-foreground">{k}</span><span className="text-right font-medium">{v}</span></div>
+                        <div key={k} className="flex justify-between gap-3"><span className="font-normal text-muted-foreground">{k}</span><span className="text-right font-medium">{v}</span></div>
                       ))}
                     </div>
-                    <p className="mt-3 text-[9px] text-muted-foreground">Demo booking · not a real transaction</p>
+                    <p className="type-label mt-3 text-muted-foreground">Demo booking · not a real transaction</p>
                   </motion.div>
                 )}
                 {stage === 4 && (
                   <motion.div key="n" {...card} className="p-4">
-                    <p className="font-display text-2xl">Syncing…</p>
+                    <p className="type-card">Syncing…</p>
                     {[[Mail, "Email confirmation sent"], [MessageCircle, "WhatsApp message delivered"], [Store, `${s.name} notified`], [LayoutDashboard, "Recorded in admin"]].map(([I, t], i) => {
                       const Icon = I as typeof Mail;
                       return (
-                        <motion.div key={t as string} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.25 * i }} className="mt-3 flex items-center gap-3 rounded-xl bg-pure p-3 text-xs shadow-soft">
-                          <Icon className="h-4 w-4 text-rose" /><span className="flex-1">{t as string}</span><Check className="h-3.5 w-3.5 text-success" />
+                        <motion.div key={t as string} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.25 * i }} className="type-ui mt-3 flex items-center gap-3 rounded-xl bg-pure p-3 shadow-soft">
+                          <Icon className="h-4 w-4 text-rose" /><span className="flex-1 font-normal">{t as string}</span><Check className="h-3.5 w-3.5 text-success" />
                         </motion.div>
                       );
                     })}
@@ -147,21 +147,21 @@ export function BookingJourney() {
           <div className="hidden lg:block">
             <AnimatePresence mode="wait">
               <motion.div key={stage} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5 }} className="ml-auto max-w-xs">
-                <p className="font-display text-8xl text-blush">0{stage + 1}</p>
-                <p className="mt-2 text-2xl font-display">{stages[stage]}</p>
+                <p className="font-display text-[clamp(4rem,3rem+4vw,6rem)] leading-none text-blush">0{stage + 1}</p>
+                <p className="type-subhead mt-2">{stages[stage]}</p>
                 {stage === 4 && (
                   <div className="mt-6 space-y-3">
                     {[[Smartphone, "Customer"], [Store, "Selected salon"], [LayoutDashboard, "Central administration"]].map(([I, l], i) => {
                       const Icon = I as typeof Mail;
                       return (
-                        <motion.div key={l as string} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 + i * 0.2 }} className="glass flex items-center gap-3 rounded-2xl p-3 text-sm shadow-soft">
+                        <motion.div key={l as string} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 + i * 0.2 }} className="type-nav glass flex items-center gap-3 rounded-2xl p-3 shadow-soft">
                           <Icon className="h-4 w-4 text-mauve" />{l as string}<span className="ml-auto h-2 w-2 animate-pulse rounded-full bg-success" />
                         </motion.div>
                       );
                     })}
                   </div>
                 )}
-                <p className="mt-6 text-xs text-muted-foreground">Tap the screen to make choices — it's a live demo.</p>
+                <p className="type-label mt-6 text-muted-foreground">Tap the screen to make choices — it's a live demo.</p>
               </motion.div>
             </AnimatePresence>
           </div>
