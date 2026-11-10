@@ -60,8 +60,10 @@ function Dashboard() {
 
 export function MultiSalon() {
   const ref = useRef<HTMLElement>(null);
-  useGsap(ref, () => {
-    const tl = gsap.timeline({ scrollTrigger: { trigger: "[data-pin]", start: "top top", end: "+=2200", scrub: 1, pin: true } });
+  useGsap(ref, (el) => {
+    const tl = gsap.timeline({
+      scrollTrigger: { trigger: el, start: "top 70%", toggleActions: "restart none none reverse" },
+    });
     tl.from("[data-salon]", { x: (i) => [-1, 1, -1, 1][i]! * 420, y: (i) => [-1, -1, 1, 1][i]! * 200, opacity: 0, rotate: (i) => [-8, 8, 6, -6][i]!, duration: 1, stagger: 0.1 })
       .from("[data-wire]", { scaleY: 0, scaleX: 0, opacity: 0, duration: 0.6 }, "-=0.3")
       .to("[data-salon]", { opacity: 0, scale: 0.6, duration: 0.6 }, "+=0.3")
@@ -73,8 +75,7 @@ export function MultiSalon() {
     <section ref={ref} className="bg-plum-gradient text-cream">
       <div data-pin className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 py-16">
         <div className="mb-8 text-center">
-          <p className="eyebrow text-blush">04 — Multi-Salon Management</p>
-          <h2 className="type-section mt-4">One Platform. <em className="text-blush">Every Salon.</em></h2>
+          <h2 className="type-section">One Platform. <em className="text-blush">Every Salon.</em></h2>
         </div>
         <div className="relative w-full max-w-4xl">
           {[0, 1, 2, 3].map((i) => {

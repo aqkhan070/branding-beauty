@@ -13,7 +13,7 @@
   height: 100vh;
   height: 100dvh;
   overflow: hidden;
-  background: #e4c2c0;
+  background: #e4c2c0 url('/images/items-bg.png') center / cover no-repeat;
   color: var(--ink);
   font-family: var(--sans);
 }
@@ -22,7 +22,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background: #e4c2c0;
+  background: transparent;
 }
 
 .book-section .app::after {
@@ -42,7 +42,7 @@
 .book-section .stage {
   position: absolute !important;
   inset: 0;
-  background: #e4c2c0;
+  background: transparent;
 }
 
 .book-section .overlay {

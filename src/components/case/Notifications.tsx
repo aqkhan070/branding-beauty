@@ -20,7 +20,10 @@ export function Notifications() {
 
   return (
     <section ref={ref} className="relative overflow-hidden bg-background py-32">
-      <SectionHead eyebrow="03 — Smart Notifications" title="Every Appointment. Everyone in Sync." sub="One booking branches instantly to the customer, the salon and the central system — then reminders follow on schedule." />
+      <SectionHead
+        title="Every Appointment. Everyone in Sync."
+        sub="One booking branches instantly to the customer, the salon and the central system — then reminders follow on schedule."
+      />
 
       <div className="mt-10 flex justify-center">
         <div className="type-nav inline-flex rounded-full border border-border bg-pure p-1">

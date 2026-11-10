@@ -38,10 +38,10 @@ function IgIcon({ className = "h-5 w-5" }: { className?: string }) {
 function FbIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden>
-      <rect width="24" height="24" rx="6" fill="#1877F2" />
+      {/* Official Meta Facebook mark */}
       <path
-        d="M16.75 12.4h-2.35v7.35h-3.05V12.4H9.65V9.85h1.7V8.25c0-1.7 1.02-2.63 2.56-2.63.73 0 1.5.14 1.5.14v1.65h-.84c-.83 0-1.09.52-1.09 1.05v1.39h1.86l-.3 2.55z"
-        fill="#fff"
+        fill="#1877F2"
+        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
       />
     </svg>
   );
@@ -535,13 +535,13 @@ export function Integrations() {
 
             {/* curved arrow to confirmation — desktop */}
             <svg
-              className="pointer-events-none absolute -right-10 top-1/2 hidden h-24 w-16 -translate-y-1/2 lg:block xl:-right-12"
-              viewBox="0 0 64 96"
+              className="pointer-events-none absolute -right-14 top-[42%] hidden h-14 w-20 -translate-y-1/2 lg:block xl:-right-16"
+              viewBox="0 0 80 56"
               fill="none"
               aria-hidden
             >
               <motion.path
-                d="M4 20 C 40 28, 48 50, 36 78"
+                d="M2 22 C 26 8, 50 8, 70 24"
                 stroke={BURGUNDY}
                 strokeWidth="1.6"
                 strokeLinecap="round"
@@ -550,7 +550,7 @@ export function Integrations() {
                 transition={{ duration: 0.55, ease }}
               />
               <motion.path
-                d="M28 70 l8 10 10-6"
+                d="M58 16 L72 26 L58 36"
                 stroke={BURGUNDY}
                 strokeWidth="1.6"
                 strokeLinecap="round"
@@ -620,10 +620,15 @@ export function Integrations() {
           {features.map(({ Icon, title, desc }) => (
             <div key={title} className="text-center lg:text-left">
               <div
-                className="mx-auto mb-3 grid h-11 w-11 place-items-center rounded-2xl border lg:mx-0"
-                style={{ borderColor: "color-mix(in oklab, #630d16 28%, transparent)", color: BURGUNDY }}
+                className="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-2xl border lg:mx-0"
+                style={{
+                  background: "linear-gradient(145deg, #f9d7e1 0%, #f0b8c8 100%)",
+                  borderColor: "color-mix(in oklab, #630d16 38%, transparent)",
+                  color: BURGUNDY,
+                  boxShadow: "0 10px 22px -10px rgba(99,13,22,0.45)",
+                }}
               >
-                <Icon className="h-5 w-5" strokeWidth={1.75} />
+                <Icon className="h-[22px] w-[22px]" strokeWidth={1.9} />
               </div>
               <p className="text-[15px] font-semibold" style={{ color: "#2a1a1e" }}>
                 {title}

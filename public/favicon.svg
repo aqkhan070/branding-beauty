@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <linearGradient id="g" x1="6" y1="26" x2="26" y2="6" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d8285c"/>
+      <stop offset="0.55" stop-color="#e85a4f"/>
+      <stop offset="1" stop-color="#f08a4a"/>
+    </linearGradient>
+  </defs>
+  <!-- Soft cream disc so the mark reads on dark browser chrome -->
+  <circle cx="16" cy="16" r="15" fill="#fcf8f6"/>
+  <!-- Four-point beauty sparkle -->
+  <path
+    fill="url(#g)"
+    d="M16 4.5c.55 4.6 2.9 6.95 7.5 7.5-4.6.55-6.95 2.9-7.5 7.5-.55-4.6-2.9-6.95-7.5-7.5 4.6-.55 6.95-2.9 7.5-7.5Z"
+  />
+  <!-- Small accent sparkle -->
+  <path
+    fill="url(#g)"
+    opacity="0.9"
+    d="M24.2 6.2c.22 1.7 1.08 2.56 2.78 2.78-1.7.22-2.56 1.08-2.78 2.78-.22-1.7-1.08-2.56-2.78-2.78 1.7-.22 2.56-1.08 2.78-2.78Z"
+  />
+</svg>

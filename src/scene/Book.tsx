@@ -544,6 +544,7 @@ export function Book() {
   const closedStackMesh = useRef<THREE.Mesh>(null)
   const pagesGroup = useRef<THREE.Group>(null)
   const leftPageGroup = useRef<THREE.Group>(null)
+  const spineExtras = useRef<THREE.Group>(null)
   const openProgress = useRef(0)
 
   // Synchronous initial textures guarantee instant crisp rendering
@@ -759,14 +760,21 @@ export function Book() {
     }
 
     // Closed book stack: visible ONLY when closed or nearly closed under cover
+    // Threshold matches pagesGroup so the two never overlap (avoids a hairline seam mid-swing)
     if (closedStackMesh.current) {
-      closedStackMesh.current.visible = p < 0.1
+      closedStackMesh.current.visible = p < 0.03
     }
 
     // Inner pages: visible ONLY when book is open or opening (p > 0.03)
     // Directly driven in useFrame so it NEVER gets stuck on screen when closed!
     if (pagesGroup.current) {
       pagesGroup.current.visible = p > 0.03
+    }
+
+    // Spine gutter/wire: hide while cover is mid-swing so their edge doesn't
+    // rasterize as a thin line against the rotating cover; show when open.
+    if (spineExtras.current) {
+      spineExtras.current.visible = p > 0.82
     }
 
     // Left interactive page: visible only when book is fully or nearly open (p >= 0.95)
@@ -1073,9 +1081,10 @@ function isOverImage(casePage: CasePage, uv?: THREE.Vector2): boolean {
           <meshStandardMaterial color="#f2ebe4" roughness={0.78} metalness={0.02} />
         </mesh>
 
-        {/* Front Cover Outside Face Texture (Glaura cream cover) */}
+        {/* Front Cover Outside Face Texture (Glaura cream cover)
+            Separated + polygonOffset to prevent z-fight hairline vs board during swing */}
         <mesh
-          position={[PAGE_W / 2, 0.0072, 0]}
+          position={[PAGE_W / 2, 0.0086, 0]}
           rotation={[-Math.PI / 2, 0, 0]}
           onClick={onCoverClick}
           onPointerOver={() => {
@@ -1096,12 +1105,15 @@ function isOverImage(casePage: CasePage, uv?: THREE.Vector2): boolean {
             map={coverMap}
             roughness={0.72}
             metalness={0.03}
+            polygonOffset
+            polygonOffsetFactor={-1}
+            polygonOffsetUnits={-1}
           />
         </mesh>
 
         {/* Inside Cover Face Texture (Contents / Endpaper - swinging with cover in flight) */}
         <mesh
-          position={[PAGE_W / 2, -0.0002, 0]}
+          position={[PAGE_W / 2, -0.0016, 0]}
           rotation={[Math.PI / 2, 0, Math.PI]}
         >
           <planeGeometry args={[PAGE_W, PAGE_H]} />
@@ -1109,28 +1121,33 @@ function isOverImage(casePage: CasePage, uv?: THREE.Vector2): boolean {
             map={resolveMap('contents', false)}
             roughness={0.72}
             metalness={0}
+            polygonOffset
+            polygonOffsetFactor={-1}
+            polygonOffsetUnits={-1}
           />
         </mesh>
       </group>
 
       {/* 5. Inner Book Pages with authentic binding curvature & center gutter */}
       <group ref={pagesGroup} position={[0, 0, 0]} visible={false}>
-        {/* Central Spine Gutter Shadow Crease */}
-        <mesh position={[0, PAGE_Y + 0.001, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-          <planeGeometry args={[0.042, PAGE_H + 0.002]} />
-          <meshBasicMaterial
-            map={gutterShadowTex}
-            transparent
-            opacity={0.88}
-            depthWrite={false}
-          />
-        </mesh>
+        <group ref={spineExtras} visible={false}>
+          {/* Central Spine Gutter Shadow Crease */}
+          <mesh position={[0, PAGE_Y + 0.001, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+            <planeGeometry args={[0.042, PAGE_H + 0.002]} />
+            <meshBasicMaterial
+              map={gutterShadowTex}
+              transparent
+              opacity={0.88}
+              depthWrite={false}
+            />
+          </mesh>
 
-        {/* Central Spine Binding Seam Stitch Wire */}
-        <mesh position={[0, PAGE_Y - 0.002, 0]}>
-          <cylinderGeometry args={[0.0012, 0.0012, PAGE_H, 12]} />
-          <meshStandardMaterial color="#1e1e22" roughness={0.7} />
-        </mesh>
+          {/* Central Spine Binding Seam Stitch Wire */}
+          <mesh position={[0, PAGE_Y - 0.002, 0]}>
+            <cylinderGeometry args={[0.0012, 0.0012, PAGE_H, 12]} />
+            <meshStandardMaterial color="#1e1e22" roughness={0.7} />
+          </mesh>
+        </group>
 
         {/* Left Page Group (Visible only when book is fully or nearly open) */}
         <group ref={leftPageGroup} visible={false}>

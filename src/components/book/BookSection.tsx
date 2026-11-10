@@ -53,18 +53,18 @@ export function BookSection() {
               antialias: true,
               toneMappingExposure: 1.05,
               preserveDrawingBuffer: true,
-              alpha: false,
+              alpha: true,
             }}
-            style={{ background: '#e4c2c0' }}
+            style={{ background: 'transparent' }}
             onCreated={({ camera, gl }) => {
               camera.lookAt(0.04, 0.02, 0.26)
-              gl.setClearColor('#e4c2c0', 1)
+              gl.setClearColor('#e4c2c0', 0)
             }}
           >
             <Experience />
           </Canvas>
         ) : (
-          <div className="stage" style={{ background: '#e4c2c0' }} />
+          <div className="stage" style={{ background: 'transparent' }} />
         )}
         <Overlay />
       </div>

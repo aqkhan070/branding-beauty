@@ -30,11 +30,11 @@ export function Browser({ children, className, url = "app.beautyhub.demo" }: { c
   );
 }
 
-export function SectionHead({ eyebrow, title, sub, className }: { eyebrow: string; title: string; sub?: string; className?: string }) {
+export function SectionHead({ eyebrow, title, sub, className }: { eyebrow?: string; title: string; sub?: string; className?: string }) {
   return (
     <div className={cn("mx-auto max-w-3xl px-6 text-center", className)}>
-      <p className="eyebrow">{eyebrow}</p>
-      <h2 className="type-section mt-5">{title}</h2>
+      {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
+      <h2 className={cn("type-section", eyebrow ? "mt-5" : undefined)}>{title}</h2>
       {sub && <p className="type-body mx-auto mt-6 max-w-xl text-muted-foreground">{sub}</p>}
     </div>
   );

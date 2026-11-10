@@ -6,10 +6,10 @@ import { Phone, Browser } from "./Devices";
 import { salons } from "./data";
 
 const platforms = [
-  { key: "support", label: "Customer Services", icon: Headphones, color: "text-mod-support", bg: "bg-mod-support", desc: "Inquiries, booking assistance & live communication." },
-  { key: "admin", label: "Admin Panel", icon: LayoutDashboard, color: "text-mod-admin", bg: "bg-mod-admin", desc: "Salons, staff, services and bookings — centralised." },
-  { key: "mobile", label: "Mobile App", icon: Smartphone, color: "text-mod-mobile", bg: "bg-mod-mobile", desc: "Discover salons, pick services, book a slot." },
-  { key: "web", label: "Web Application", icon: Globe, color: "text-mod-web", bg: "bg-mod-web", desc: "Booking for clients, schedule tools for salons." },
+  { key: "support", label: "Customer Services", icon: Headphones, color: "text-mod-support", bg: "bg-mod-support" },
+  { key: "admin", label: "Admin Panel", icon: LayoutDashboard, color: "text-mod-admin", bg: "bg-mod-admin" },
+  { key: "mobile", label: "Mobile App", icon: Smartphone, color: "text-mod-mobile", bg: "bg-mod-mobile" },
+  { key: "web", label: "Web Application", icon: Globe, color: "text-mod-web", bg: "bg-mod-web" },
 ];
 
 function SupportUI() {
@@ -76,7 +76,7 @@ export function Ecosystem() {
     const panels = gsap.utils.toArray<HTMLElement>("[data-panel]");
     const labels = gsap.utils.toArray<HTMLElement>("[data-label]");
     const tl = gsap.timeline({
-      scrollTrigger: { trigger: el, start: "top top", end: "+=3200", scrub: 1, pin: "[data-pin]" },
+      scrollTrigger: { trigger: el, start: "top 70%", toggleActions: "restart none none reverse" },
     });
     panels.forEach((p, i) => {
       gsap.set(p, { xPercent: -50, yPercent: -50, opacity: 0, scale: 1.4, rotate: i % 2 ? 6 : -6, y: 200 });
@@ -94,13 +94,12 @@ export function Ecosystem() {
     <section id="ecosystem" ref={ref} className="relative bg-background">
       <div data-pin className="relative h-screen overflow-hidden">
         <div className="absolute left-6 top-24 z-20 max-w-sm">
-          <p className="eyebrow">01 — The Ecosystem</p>
-          <h2 className="type-section mt-4">Four Platforms. One Beautifully Connected Experience.</h2>
+          <h2 className="type-section">Four Platforms. One Beautifully Connected Experience.</h2>
           <ul className="mt-8 space-y-3.5">
             {platforms.map((p) => (
-              <li key={p.key} data-label className="flex translate-x-0 items-start gap-3 md:-translate-x-4 md:opacity-0">
-                <span className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${p.bg}`} />
-                <div><p className="type-nav">{p.label}</p><p className="type-secondary mt-0.5 text-muted-foreground">{p.desc}</p></div>
+              <li key={p.key} data-label className="flex translate-x-0 items-center gap-3 md:-translate-x-4 md:opacity-0">
+                <span className={`h-2 w-2 shrink-0 rounded-full ${p.bg}`} />
+                <p className="type-nav">{p.label}</p>
               </li>
             ))}
           </ul>

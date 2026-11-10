@@ -113,7 +113,6 @@ function ScrollZoomBridge() {
 export function Experience() {
   return (
     <>
-      <color attach="background" args={['#e4c2c0']} />
       <fog attach="fog" args={['#e4c2c0', 9, 18]} />
       <Lights />
       <CameraRig />
